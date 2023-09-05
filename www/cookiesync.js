@@ -28,6 +28,10 @@ module.exports = {
         exec(successCallback, errorCallback, "WKWebViewInjectCookie",
             "getCookies", [url]);
     },
+    syncCookies: function (url, successCallback, errorCallback) {
+        exec(successCallback, errorCallback, "WKWebViewInjectCookie",
+            "syncCookies", [url]);
+    },
     injectCookie: function (domain, path = '', successCallback, errorCallback) {
         // eventually strip http* from domain
         if ((domain.substr(0,4)==="http")&&(domain.indexOf("\/\/")>=0)) {

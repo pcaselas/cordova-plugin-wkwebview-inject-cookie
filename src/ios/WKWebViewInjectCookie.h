@@ -20,6 +20,7 @@
 
 - (void)setCookie:(CDVInvokedUrlCommand *)command;
 - (void)getCookies:(CDVInvokedUrlCommand *)command;
+- (void)syncCookies:(CDVInvokedUrlCommand *)command;
 
 @property (nonatomic, strong) NSString* callbackId;
 

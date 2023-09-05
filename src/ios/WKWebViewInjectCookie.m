@@ -110,4 +110,27 @@
     }];
 }
 
+- (void)syncCookies:(CDVInvokedUrlCommand*)command {
+
+  self.callbackId = command.callbackId;
+  
+  WKHTTPCookieStore* cookies = [WKWebsiteDataStore defaultDataStore].httpCookieStore;
+
+  [cookies getAllCookies:^(NSArray<NSHTTPCookie *> * _Nonnull allCookies) {
+
+    for (NSHTTPCookie *cookie in allCookies) {
+        
+      [[NSHTTPCookieStorage sharedHTTPCookieStorage] setCookie:cookie];
+        
+    }
+    
+    // Send plugin result
+    CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
+    [self.commandDelegate sendPluginResult:pluginResult callbackId:self.callbackId];
+      NSLog(@"synced the cookies :D");
+
+  }];
+
+}
+
 @end
